@@ -140,7 +140,37 @@ form { display: grid; gap: 1rem; }
 }
 
 .field select:invalid { color: var(--muted); }
-.membership-review { margin-top: .35rem; }
+.membership-review, .city-help { margin-top: .35rem; }
+
+.city-picker { position: relative; }
+.city-options {
+  position: absolute;
+  z-index: 1;
+  inset: calc(100% + .25rem) 0 auto;
+  max-height: 12rem;
+  overflow-y: auto;
+  margin: 0;
+  padding: .2rem;
+  border: 1px solid var(--field-border);
+  border-radius: .45rem;
+  color: var(--ink);
+  background: #171717;
+  list-style: none;
+}
+
+.city-options li {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: .45rem .55rem;
+  border-radius: .3rem;
+  cursor: pointer;
+}
+
+.city-options li[aria-selected="true"] { background: #363636; }
+@media (hover: hover) {
+  .city-options li:hover { background: #363636; }
+}
 
 .field textarea { min-height: 6rem; resize: vertical; }
 .field textarea::placeholder { color: var(--muted); opacity: 1; }
@@ -162,7 +192,7 @@ form { display: grid; gap: 1rem; }
   accent-color: var(--button);
 }
 
-.honeypot {
+.honeypot, .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -170,7 +200,7 @@ form { display: grid; gap: 1rem; }
   clip-path: inset(50%);
 }
 
-.privacy, .availability, .form-status, .membership-review { color: var(--muted); font-size: .875rem; }
+.privacy, .availability, .form-status, .membership-review, .city-help { color: var(--muted); font-size: .875rem; }
 .form-status:not(:empty) { margin-top: .85rem; }
 .form-status[data-state="error"] { color: #ffb4ab; }
 .form-status[data-state="success"] { color: #c7f5cf; }
