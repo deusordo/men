@@ -128,11 +128,19 @@ cityInput.addEventListener("keydown", (event) => {
   option.scrollIntoView({ block: "nearest" });
 });
 
+const motion = matchMedia("(prefers-reduced-motion: no-preference)");
+
 function setPanelOpen(isOpen) {
   panel.hidden = !isOpen;
-  if (!isOpen) closeCityOptions();
   openJoin.setAttribute("aria-expanded", String(isOpen));
-  (isOpen ? firstName : openJoin).focus();
+
+  if (isOpen) {
+    firstName.focus({ preventScroll: true });
+    panel.scrollIntoView({ behavior: motion.matches ? "smooth" : "instant", block: "start" });
+  } else {
+    closeCityOptions();
+    openJoin.focus();
+  }
 }
 
 openJoin.addEventListener("click", () => setPanelOpen(panel.hidden));

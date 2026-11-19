@@ -7,9 +7,10 @@
   <meta name="theme-color" content="#000000">
   <title>MEN | Men’s Everlasting Nation</title>
   <link rel="icon" type="image/svg+xml" href="mark.svg">
-  <link rel="stylesheet" href="styles.css?v=59861e3391bc">
-  <script src="site.js?v=bafb9d8586e9" defer></script>
+  <link rel="stylesheet" href="styles.css?v=546678dfb653">
+  <script src="site.js?v=98af2f58d243" defer></script>
   <script src="bricks.js?v=3734f38ba26b" defer></script>
+  <script src="typewriter.js?v=8c44a1138d22" defer></script>
 </head>
 <body>
   <canvas class="brick-ripple" aria-hidden="true"></canvas>
@@ -23,6 +24,10 @@
 
     <header class="intro">
       <h1>Build the man.<br>Move the mountain.</h1>
+      <p class="typewriter">
+        <span class="typewriter-static">Build the brotherhood.</span>
+        <span class="typewriter-animated" aria-hidden="true" hidden><span class="typewriter-text"></span></span>
+      </p>
       <p>MEN is a brotherhood of men who strengthen themselves so they can strengthen one another and the world around them.</p>
       <button class="action" id="open-join" type="button" aria-controls="join-panel" aria-expanded="false" hidden>Join the Brotherhood</button>
       <noscript><p class="availability">Enable JavaScript to open the membership form.</p></noscript>
@@ -30,7 +35,10 @@
 
     <section class="join" id="join-panel" aria-labelledby="join-title" hidden>
       <div class="panel-heading">
-        <h2 id="join-title">Join the Brotherhood</h2>
+        <div>
+          <h2 id="join-title">Join the Brotherhood</h2>
+          <p class="join-caption">Start the conversation.</p>
+        </div>
         <button class="close" id="close-join" type="button" aria-label="Close membership form">×</button>
       </div>
       <!-- Set data-formspree-form-id to the approved Formspree form ID. Leave it blank to disable submissions. -->
@@ -156,6 +164,7 @@
       </div>
     </section>
 
+    <p class="values">Brotherhood. Growth. Service.</p>
     <p class="motto">One man can move a rock. A thousand men can move a mountain.</p>
   </main>
 </body>
