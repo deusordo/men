@@ -1,15 +1,31 @@
 # MEN · Men’s Everlasting Nation
 
-A single static landing page with an interest form. There are no build dependencies. The site is independent of the owner's personal website.
+A one-page GitHub Pages site and membership inquiry form built with HTML, CSS, and vanilla JavaScript.
+
+- `index.html` contains the landing page, form, and Formspree configuration.
+- `styles.css` controls the layout and responsive styles.
+- `site.js` handles opening, closing, focus, validation, and AJAX requests.
+- `men-logo.jpg` is the supplied artwork with personal metadata removed. `mark.svg` is the existing favicon.
 
 ## Preview locally
 
-From the project directory, run `python3 -m http.server 8000 --bind 127.0.0.1` and visit <http://localhost:8000> in Safari.
+From the project directory, run `python3 -m http.server 8000 --bind 127.0.0.1`. Open <http://127.0.0.1:8000/>. The form opens with **Join the Brotherhood** and closes with **×** or Escape.
 
-The “Request to Join” link jumps to the interest form. Name and email are required. City and message are optional. The form uses the same Formspree endpoint as the personal site. It includes a MEN-specific subject field to identify interest submissions. The JavaScript client adds the Formspree action and shows inline sending, success, and failure states. It is an expression of interest, not membership enrollment, a sale, or a newsletter signup.
+## Configure Formspree
 
-Do not use real contact details for testing. Intercept the network request or replace the action with a test endpoint before attempting a test, as a real submission can send notifications.
+1. Create a dedicated form titled **MEN — New Membership Request** in Formspree. Configure notifications for the intended inbox in the Formspree dashboard.
+2. Copy the form ID from the endpoint shown by Formspree. In `index.html`, set `data-formspree-form-id=""` on `#interest-form` to that ID. Keep this blank until the dedicated form is ready. The personal site’s ID is blocked.
+3. The form captures name, email, optional phone, location, reason, and an explicit yes/no update preference. The checkbox starts unchecked. A request is an inquiry and stays subject to review.
+4. The form uses Formspree’s [honeypot field](https://help.formspree.io/articles/building-your-form/honeypot-spam-filtering). Keep Formspree’s spam filtering enabled.
 
-## GitHub Pages
+Never place an inbox address, API key, or applicant data in this repository.
 
-Serve the files from the root of the `main` branch in `deusordo/men`. The public URL is <https://deusordo.github.io/men/>. The repository contains no API key or stored submissions.
+## Test
+
+With the ID blank, open the form. It should show the online availability message and disable submissions. To test success and errors without sending a request, use a temporary copy with a dummy ID and intercept the Formspree request in your browser test. Check that the consent starts unchecked, the success message is announced, and data stays in the fields on error.
+
+After the dedicated form and inbox are configured, send one clearly labeled test through the published site. Check the confirmation, Formspree dashboard, and notification inbox.
+
+## Deploy or update
+
+The publishing source is the root of the `main` branch in [deusordo/men](https://github.com/deusordo/men). Commit site changes to `main`, wait for the GitHub Pages build, then check the [public site](https://deusordo.github.io/men/). Keep asset paths relative. When `styles.css` or `site.js` changes, update its version query in `index.html` so browsers fetch the new file.
