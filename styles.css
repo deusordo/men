@@ -122,6 +122,14 @@ h1 {
 .close:hover { background: #191919; }
 
 form { display: grid; gap: 1rem; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+.field-row:has(> [hidden]) > :first-child { grid-column: 1 / -1; }
 .field label { display: block; font-size: .95rem; font-weight: 600; }
 
 .field input,
@@ -163,6 +171,7 @@ form { display: grid; gap: 1rem; }
   align-items: center;
   min-height: 2.75rem;
   padding: .45rem .55rem;
+  overflow-wrap: anywhere;
   border-radius: .3rem;
   cursor: pointer;
 }
