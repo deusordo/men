@@ -1,0 +1,142 @@
+:root {
+  color-scheme: light;
+  --paper: #fbf8f6;
+  --ink: #361b10;
+  --text: #281910;
+  --muted: #634b40;
+  --rule: #bcb6b2;
+  --input-rule: #aaa09b;
+  --button: #482412;
+  --button-hover: #653721;
+  font: 1rem / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: var(--paper);
+  color: var(--text);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+.site {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  width: min(calc(100% - 3rem), 50.875rem);
+  margin-inline: auto;
+}
+.masthead { padding-block: 1.8rem 1.55rem; }
+.identity {
+  color: var(--ink);
+  display: inline-flex;
+  align-items: end;
+  gap: .75rem;
+  font: 650 2.45rem / 1.02 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  letter-spacing: .245em;
+  text-decoration: none;
+}
+.identity img { display: block; }
+h1 {
+  margin: 0;
+  color: var(--ink);
+  font: 700 clamp(2.55rem, 5.45vw, 3.75rem) / .99 Georgia, "Times New Roman", serif;
+  letter-spacing: -.038em;
+}
+.intro {
+  max-width: 33rem;
+  margin: .85rem 0 2rem;
+  font-size: clamp(1.13rem, 2.1vw, 1.36rem);
+  line-height: 1.28;
+}
+.join { border-top: 1px solid var(--rule); padding-top: 1.18rem; }
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7em;
+  padding: .57em 1.42em .64em;
+  min-height: 3.3rem;
+  border: 1px solid var(--button);
+  border-radius: .52rem;
+  background: var(--button);
+  color: white;
+  cursor: pointer;
+  font: 650 clamp(1.15rem, 2.3vw, 1.48rem) / 1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-decoration: none;
+}
+.action:hover:not(:disabled) { background: var(--button-hover); }
+.action:disabled { opacity: .68; cursor: not-allowed; }
+.action span[aria-hidden] { font-size: 1.23em; line-height: 0; }
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary .when-closed, summary .when-open {
+  align-items: center;
+  justify-content: center;
+  gap: .7em;
+}
+summary .when-closed, details[open] summary .when-open { display: inline-flex; }
+summary .when-open, details[open] summary .when-closed { display: none; }
+details[open] summary {
+  min-height: 2.75rem;
+  padding: .35rem .68rem;
+  margin: -.24rem 0 .75rem auto;
+  display: flex;
+  width: max-content;
+  border-color: var(--rule);
+  background: transparent;
+  color: var(--ink);
+  font-size: .9rem;
+}
+details[open] summary:hover { background: #f0e8e3; }
+:focus-visible { outline: 2px solid #84491f; outline-offset: 4px; }
+form { display: grid; gap: .95rem; }
+label { display: block; font-size: .95rem; line-height: 1.3; font-weight: 650; }
+.optional { color: var(--muted); font-size: .83rem; font-weight: 400; }
+input, textarea {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 2.52rem;
+  margin-top: .32rem;
+  padding: .42rem .6rem;
+  border: 1px solid var(--input-rule);
+  border-radius: .45rem;
+  background: transparent;
+  color: var(--text);
+  font: 400 1rem / 1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+textarea { min-height: 4.85rem; resize: vertical; }
+form .action { justify-self: start; }
+.form-note, .form-status, .mission {
+  color: var(--muted);
+  line-height: 1.4;
+  font-size: .9rem;
+}
+.form-note, .form-status { margin: 0; }
+.form-status:empty { display: none; }
+.form-status[data-state="error"] { color: #8f2820; }
+.form-status[data-state="success"] { color: #2c6339; }
+.mission { max-width: 36rem; margin: 1.7rem 0 2rem; }
+.mission p { margin: 0 0 .35rem; }
+.footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .35rem 1.4rem;
+  flex-wrap: wrap;
+  width: min(calc(100% - 3rem), 57.75rem);
+  margin: auto auto 0;
+  padding-block: .65rem .8rem;
+  border-top: 1px solid var(--rule);
+  font-size: .94rem;
+}
+.footer p { margin: 0; }
+.footer p:last-child { font-style: italic; }
+@media (max-width: 640px) {
+  .masthead { padding-block: 1.45rem 1.35rem; }
+  .identity { gap: .6rem; font-size: 1.85rem; }
+  .identity img { width: 69px; height: auto; }
+  h1 { font-size: clamp(2.35rem, 8.55vw, 3.45rem); }
+  .intro { margin-bottom: 1.4rem; }
+  input, textarea { min-height: 2.75rem; }
+  .action:not(.when-open), summary .when-closed { max-width: 100%; }
+}
