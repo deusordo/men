@@ -1,142 +1,220 @@
 :root {
   color-scheme: light;
-  --paper: #fbf8f6;
-  --ink: #361b10;
-  --text: #281910;
-  --muted: #634b40;
-  --rule: #bcb6b2;
-  --input-rule: #aaa09b;
-  --button: #482412;
-  --button-hover: #653721;
-  font: 1rem / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  background: var(--paper);
+  --paper: #fbf7ef;
+  --ink: #3c2115;
+  --text: #38281f;
+  --rule: #d3c8ba;
+  --input-rule: #b6aa9c;
+  --button: #4b2815;
+  --button-hover: #653c26;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
   color: var(--text);
+  background: var(--paper);
+  font: 1rem / 1.5 var(--sans);
 }
+
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
-.site {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-}
+p { margin: 0; }
+
+.wide,
 .content {
-  width: min(calc(100% - 3rem), 50.875rem);
+  width: min(calc(100% - 2.5rem), 53.75rem);
   margin-inline: auto;
 }
-.masthead { padding-block: 1.8rem 1.55rem; }
+
+.content { max-width: 35rem; }
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .25rem 1rem;
+  min-height: 4.25rem;
+  padding: .65rem .75rem;
+}
+
+.identity,
+.masthead nav { display: flex; align-items: center; }
 .identity {
+  gap: .45rem;
   color: var(--ink);
-  display: inline-flex;
-  align-items: end;
-  gap: .75rem;
-  font: 650 2.45rem / 1.02 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  letter-spacing: .245em;
+  font: 650 1.4rem / 1 var(--sans);
+  letter-spacing: .19em;
   text-decoration: none;
 }
-.identity img { display: block; }
+
+.masthead nav { gap: clamp(.9rem, 3.3vw, 2.15rem); }
+.masthead nav a {
+  display: grid;
+  min-height: 2.75rem;
+  align-items: center;
+  color: var(--ink);
+  font-size: .9375rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.masthead nav a:hover { text-decoration: underline; text-underline-offset: .25em; }
+
+.logo-window {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+
+.logo-window img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  width: 233.6%;
+  height: auto;
+  inset-inline-start: -66.8%;
+  filter: contrast(1.14) brightness(1.12);
+}
+
+.identity-mark { width: 3.5rem; aspect-ratio: 500 / 316; }
+.identity-mark img { top: -49.05%; }
+.brand-logo { width: 10.8rem; aspect-ratio: 500 / 448; margin-inline: auto; }
+.brand-logo img { top: -35.5%; }
+
+.brand {
+  padding-block: 1.5rem 2.45rem;
+  text-align: center;
+  color: var(--ink);
+}
+
+.brand p {
+  margin-top: .6rem;
+  font-size: .78rem;
+  font-weight: 650;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
 h1 {
   margin: 0;
   color: var(--ink);
-  font: 700 clamp(2.55rem, 5.45vw, 3.75rem) / .99 Georgia, "Times New Roman", serif;
-  letter-spacing: -.038em;
+  font: 400 clamp(2.3rem, 6.9vw, 4.15rem) / 1.02 var(--serif);
+  letter-spacing: -.035em;
 }
+
 .intro {
-  max-width: 33rem;
-  margin: .85rem 0 2rem;
-  font-size: clamp(1.13rem, 2.1vw, 1.36rem);
-  line-height: 1.28;
+  margin: 1.05rem 0 1.65rem;
+  font-size: clamp(1.0625rem, 2.05vw, 1.2rem);
+  line-height: 1.38;
 }
-.join { border-top: 1px solid var(--rule); padding-top: 1.18rem; }
+
 .action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: .7em;
-  padding: .57em 1.42em .64em;
-  min-height: 3.3rem;
+  min-height: 2.75rem;
+  padding: .6rem 1.2rem;
   border: 1px solid var(--button);
-  border-radius: .52rem;
+  border-radius: .475rem;
   background: var(--button);
-  color: white;
+  color: #fff;
   cursor: pointer;
-  font: 650 clamp(1.15rem, 2.3vw, 1.48rem) / 1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 600 .9375rem / 1.2 var(--sans);
   text-decoration: none;
 }
+
+.request { min-width: 13rem; min-height: 3rem; font-size: 1.0625rem; }
+.send { min-width: 10.9rem; }
 .action:hover:not(:disabled) { background: var(--button-hover); }
-.action:disabled { opacity: .68; cursor: not-allowed; }
-.action span[aria-hidden] { font-size: 1.23em; line-height: 0; }
-summary { list-style: none; }
-summary::-webkit-details-marker { display: none; }
-summary .when-closed, summary .when-open {
-  align-items: center;
-  justify-content: center;
-  gap: .7em;
+.action:disabled { cursor: wait; opacity: .7; }
+:focus-visible { outline: 2px solid #935b35; outline-offset: 3px; }
+
+.join,
+.purpose {
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 1rem;
 }
-summary .when-closed, details[open] summary .when-open { display: inline-flex; }
-summary .when-open, details[open] summary .when-closed { display: none; }
-details[open] summary {
-  min-height: 2.75rem;
-  padding: .35rem .68rem;
-  margin: -.24rem 0 .75rem auto;
-  display: flex;
-  width: max-content;
-  border-color: var(--rule);
-  background: transparent;
-  color: var(--ink);
-  font-size: .9rem;
+
+.join {
+  margin-top: 2.15rem;
+  padding: 1.85rem clamp(0rem, 4vw, 2.25rem) 2.5rem;
 }
-details[open] summary:hover { background: #f0e8e3; }
-:focus-visible { outline: 2px solid #84491f; outline-offset: 4px; }
-form { display: grid; gap: .95rem; }
-label { display: block; font-size: .95rem; line-height: 1.3; font-weight: 650; }
-.optional { color: var(--muted); font-size: .83rem; font-weight: 400; }
-input, textarea {
-  appearance: none;
+
+form { display: grid; gap: .9rem; }
+label { display: block; font-size: .8125rem; line-height: 1.3; font-weight: 650; }
+
+input,
+textarea {
   display: block;
   width: 100%;
-  min-height: 2.52rem;
-  margin-top: .32rem;
-  padding: .42rem .6rem;
+  min-height: 2.05rem;
+  margin-top: .3rem;
+  padding: .35rem .6rem;
   border: 1px solid var(--input-rule);
-  border-radius: .45rem;
+  border-radius: .4rem;
   background: transparent;
   color: var(--text);
-  font: 400 1rem / 1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 400 1rem / 1.25 var(--sans);
 }
-textarea { min-height: 4.85rem; resize: vertical; }
-form .action { justify-self: start; }
-.form-note, .form-status, .mission {
-  color: var(--muted);
-  line-height: 1.4;
-  font-size: .9rem;
-}
-.form-note, .form-status { margin: 0; }
-.form-status:empty { display: none; }
+
+textarea { min-height: 5.15rem; resize: vertical; }
+form .action { justify-self: start; margin-top: .35rem; }
+
+.form-status { font-size: .875rem; }
+.form-status:empty { position: absolute; }
 .form-status[data-state="error"] { color: #8f2820; }
 .form-status[data-state="success"] { color: #2c6339; }
-.mission { max-width: 36rem; margin: 1.7rem 0 2rem; }
-.mission p { margin: 0 0 .35rem; }
-.footer {
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.purpose {
+  padding-block: 2.1rem 2.6rem;
+  text-align: center;
+}
+
+.values {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: .35rem 1.4rem;
-  flex-wrap: wrap;
-  width: min(calc(100% - 3rem), 57.75rem);
-  margin: auto auto 0;
-  padding-block: .65rem .8rem;
-  border-top: 1px solid var(--rule);
-  font-size: .94rem;
+  gap: .5rem;
+  margin: 0 -.4rem;
+  padding: 0;
+  color: var(--ink);
+  font: 400 clamp(1.07rem, 3.6vw, 2.15rem) / 1.12 var(--serif);
+  letter-spacing: -.025em;
+  list-style: none;
 }
-.footer p { margin: 0; }
-.footer p:last-child { font-style: italic; }
-@media (max-width: 640px) {
-  .masthead { padding-block: 1.45rem 1.35rem; }
-  .identity { gap: .6rem; font-size: 1.85rem; }
-  .identity img { width: 69px; height: auto; }
-  h1 { font-size: clamp(2.35rem, 8.55vw, 3.45rem); }
-  .intro { margin-bottom: 1.4rem; }
+
+.purpose p {
+  margin-top: 1.25rem;
+  font-size: .94rem;
+  font-style: italic;
+}
+
+.footer {
+  padding-block: .8rem 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: .76rem;
+}
+
+@media (max-width: 600px) {
+  .masthead { padding-inline: 0; }
+  .identity { font-size: 1.17rem; }
+  .identity-mark { width: 3rem; }
+  .brand { padding-block: .9rem 1.65rem; }
+  .brand-logo { width: 8.25rem; }
+  .brand p { font-size: .66rem; letter-spacing: .19em; }
+  h1 { font-size: clamp(1.88rem, 8.9vw, 3.5rem); }
+  .intro { margin-block: .8rem 1.25rem; }
+  .join { margin-top: 1.75rem; padding: 1.35rem 0 1.9rem; }
   input, textarea { min-height: 2.75rem; }
-  .action:not(.when-open), summary .when-closed { max-width: 100%; }
+  textarea { min-height: 5.5rem; }
+  .purpose { padding-block: 1.65rem 1.8rem; }
+  .values { margin: 0; }
 }

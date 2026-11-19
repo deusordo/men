@@ -4,45 +4,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Men’s Everlasting Nation is a brotherhood of men who strengthen themselves so they can strengthen one another and the world around them.">
-  <meta name="theme-color" content="#fbf8f6">
+  <meta name="theme-color" content="#fbf7ef">
   <title>MEN | Men’s Everlasting Nation</title>
   <link rel="icon" type="image/svg+xml" href="mark.svg">
-  <link rel="stylesheet" href="styles.css?v=68afec98a45c">
+  <link rel="stylesheet" href="styles.css?v=b92eeaef0fdb">
   <script src="site.js?v=0688a3b2e52d" defer></script>
 </head>
 <body>
-  <div class="site">
-    <header class="masthead content">
-      <a class="identity" href="./" aria-label="Men’s Everlasting Nation home">
-        <img src="mark.svg" width="92" height="57" alt="">
-        <span>MEN</span>
-      </a>
-    </header>
-    <main class="content">
-      <h1>Build the man.<br>Move the mountain.</h1>
-      <p class="intro">A brotherhood of men committed to faith, family, responsibility, and real growth.</p>
-      <details class="join" id="join">
-        <summary class="action"><span class="when-closed">Join the Brotherhood <span aria-hidden="true">→</span></span><span class="when-open">Close form <span aria-hidden="true">×</span></span></summary>
-        <form method="post" data-formspree-endpoint="https://formspree.io/f/xwloqyor" aria-describedby="form-note" id="interest-form">
-          <label>Name<input name="name" autocomplete="name" required maxlength="120"></label>
-          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="254"></label>
-          <label>Phone <span class="optional">(optional)</span><input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
-          <label>Tell us a bit about yourself and what you’re looking for. <span class="optional">(optional)</span><textarea name="message" rows="3" maxlength="1000"></textarea></label>
-          <p class="form-note" id="form-note">This lets the brotherhood know you’re interested so we can follow up. It isn’t a membership registration.</p>
-          <input type="hidden" name="subject" value="MEN — Brotherhood Interest">
-          <button class="action" type="submit" disabled>Join the Brotherhood <span aria-hidden="true">→</span></button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true">Online signups aren’t open yet.</p>
-        </form>
-      </details>
-      <div class="mission">
-        <p>MEN is a brotherhood of men who strengthen themselves so they can strengthen one another and the world around them.</p>
-        <p>One man can move a rock. A thousand men can move a mountain.</p>
+  <header class="masthead wide">
+    <a class="identity" href="./" aria-label="Men’s Everlasting Nation home">
+      <span class="logo-window identity-mark">
+        <img src="men-logo.jpg" width="1168" height="784" alt="">
+      </span>
+      <span>MEN</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#purpose">Purpose</a>
+      <a href="#join">Join</a>
+    </nav>
+  </header>
+  <main class="content">
+    <div class="brand">
+      <div class="logo-window brand-logo">
+        <img src="men-logo.jpg" width="1168" height="784" alt="MEN mountain logo">
       </div>
-    </main>
-    <footer class="footer">
-      <p>MEN <span aria-hidden="true">—</span> Men’s Everlasting Nation</p>
-      <p>Brotherhood. Growth. Service.</p>
-    </footer>
-  </div>
+      <p>Men’s Everlasting Nation</p>
+    </div>
+    <section aria-labelledby="headline">
+      <h1 id="headline">Build the man.<br>Move the mountain.</h1>
+      <p class="intro">MEN is a brotherhood of men who strengthen themselves so they can strengthen one another and the world around them.</p>
+      <a class="action request" href="#join">Request to Join</a>
+    </section>
+    <section class="join" id="join" aria-label="Request to join">
+      <form method="post" data-formspree-endpoint="https://formspree.io/f/xwloqyor" aria-describedby="form-note" id="interest-form">
+        <label for="name">Name<input id="name" name="name" autocomplete="name" required maxlength="120"></label>
+        <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" required maxlength="254"></label>
+        <label for="city">City<input id="city" name="city" autocomplete="address-level2" maxlength="120"></label>
+        <label for="message">Why are you interested?<textarea id="message" name="message" rows="3" maxlength="1000"></textarea></label>
+        <p class="sr-only" id="form-note">Name and email are required. Sending this form asks the brotherhood to follow up with you about joining.</p>
+        <input type="hidden" name="subject" value="MEN — Brotherhood Interest">
+        <button class="action send" type="submit" disabled>Send Request</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true">Online signups aren’t open yet.</p>
+      </form>
+    </section>
+    <section class="purpose" id="purpose" aria-label="Purpose">
+      <ul class="values">
+        <li>Brotherhood.</li>
+        <li>Growth.</li>
+        <li>Service.</li>
+      </ul>
+      <p>One man can move a rock. A thousand men can move a mountain.</p>
+    </section>
+  </main>
+  <footer class="footer wide">
+    <p>MEN — Men’s Everlasting Nation</p>
+  </footer>
 </body>
 </html>
