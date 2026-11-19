@@ -8,6 +8,8 @@ const submit = form.querySelector('button[type="submit"]');
 const status = document.querySelector("#form-status");
 const stateInput = form.elements.state;
 const cityInput = form.elements.city;
+const firstName = form.elements.first_name;
+const lastName = form.elements.last_name;
 const cityField = document.querySelector("#city-field");
 const cityOptions = document.querySelector("#city-options");
 const cityStatus = document.querySelector("#city-status");
@@ -130,7 +132,7 @@ function setPanelOpen(isOpen) {
   panel.hidden = !isOpen;
   if (!isOpen) closeCityOptions();
   openJoin.setAttribute("aria-expanded", String(isOpen));
-  (isOpen ? form.elements.name : openJoin).focus();
+  (isOpen ? firstName : openJoin).focus();
 }
 
 openJoin.addEventListener("click", () => setPanelOpen(panel.hidden));
@@ -168,7 +170,8 @@ if (endpoint) {
 }
 
 const requiredText = [
-  [form.elements.name, "Enter your full name."],
+  [firstName, "Enter your first name."],
+  [lastName, "Enter your last name."],
   [form.elements.phone, "Enter your phone number."],
   [cityInput, "Enter your city."],
   [form.elements.message, "Tell us why you’re interested in MEN."]
@@ -188,6 +191,11 @@ form.addEventListener("submit", async (event) => {
   if (!form.reportValidity()) return;
 
   const data = new FormData(form);
+  const given = firstName.value.trim();
+  const family = lastName.value.trim();
+  data.set("first_name", given);
+  data.set("last_name", family);
+  data.set("name", `${given} ${family}`);
   const city = cityInput.value.trim();
   data.set("city", city);
   data.set("location", `${city}, ${stateInput.selectedOptions[0].textContent}`);

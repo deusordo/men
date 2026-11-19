@@ -16,7 +16,7 @@ From the project directory, run `python3 -m http.server 8000 --bind 127.0.0.1`. 
 
 1. Create a dedicated form titled **MEN — New Membership Request** in Formspree. Configure notifications for the intended inbox in the Formspree dashboard.
 2. Copy the form ID from the endpoint shown by Formspree. In `index.html`, set `data-formspree-form-id=""` on `#interest-form` to that ID. Keep this blank until the dedicated form is ready. The personal site’s ID is blocked.
-3. The form captures name, email, required phone number, state, city, participation interest, reason, and an explicit yes/no update preference. Submissions also include the combined `location` field in City, State format. The required `membership_interest` field sends Member, Builder, or Founder. For custom notification templates, include `{{ membership_interest }}` and verify it in a test email. The checkbox starts unchecked. A request is an inquiry and stays subject to review.
+3. The form captures first name, last name, email, required phone number, state, city, participation interest, reason, and an explicit yes/no update preference. Submissions also include a combined `name` field for existing notifications and the combined `location` field in City, State format. The required `membership_interest` field sends Member, Builder, or Founder. For custom notification templates, include `{{ membership_interest }}` and verify it in a test email. The checkbox starts unchecked. A request is an inquiry and stays subject to review.
 4. The form uses Formspree’s [honeypot field](https://help.formspree.io/articles/building-your-form/honeypot-spam-filtering). Keep Formspree’s spam filtering enabled.
 
 Never place an inbox address, API key, or applicant data in this repository.
