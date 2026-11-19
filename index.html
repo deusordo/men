@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#000000">
   <title>MEN | Men’s Everlasting Nation</title>
   <link rel="icon" type="image/svg+xml" href="mark.svg">
-  <link rel="stylesheet" href="styles.css?v=b944ac1979a5">
-  <script src="site.js?v=b319ac2b4e73" defer></script>
+  <link rel="stylesheet" href="styles.css?v=58f0a961b21d">
+  <script src="site.js?v=52a745d987e1" defer></script>
 </head>
 <body>
   <main class="content">
@@ -42,15 +42,25 @@
           <input id="email" name="email" type="email" autocomplete="email" required maxlength="254">
         </div>
         <div class="field">
-          <label for="phone">Phone Number <span class="optional">(optional)</span></label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required maxlength="40">
         </div>
         <div class="field">
           <label for="location">City / State / Country</label>
           <input id="location" name="location" required maxlength="180">
         </div>
         <div class="field">
-          <label for="message">Why do you want to join MEN?</label>
+          <label for="membership-interest">How would you like to participate?</label>
+          <select id="membership-interest" name="membership_interest" aria-describedby="membership-review" required>
+            <option value="" selected disabled>Select your interest</option>
+            <option value="Member">Member</option>
+            <option value="Builder">Builder</option>
+            <option value="Founder">Founder</option>
+          </select>
+          <p class="membership-review" id="membership-review">Your selection helps us follow up. Membership and roles require review.</p>
+        </div>
+        <div class="field">
+          <label for="message">Why are you interested in MEN?</label>
           <textarea id="message" name="message" rows="4" required maxlength="2000" placeholder="Tell us a little about yourself and why you’re interested in joining the brotherhood."></textarea>
         </div>
         <label class="consent">

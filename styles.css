@@ -123,9 +123,9 @@ h1 {
 
 form { display: grid; gap: 1rem; }
 .field label { display: block; font-size: .95rem; font-weight: 600; }
-.optional { color: var(--muted); font-size: .875rem; font-weight: 400; }
 
 .field input,
+.field select,
 .field textarea {
   display: block;
   width: 100%;
@@ -138,6 +138,9 @@ form { display: grid; gap: 1rem; }
   background: #101010;
   font: inherit;
 }
+
+.field select:invalid { color: var(--muted); }
+.membership-review { margin-top: .35rem; }
 
 .field textarea { min-height: 6rem; resize: vertical; }
 .field textarea::placeholder { color: var(--muted); opacity: 1; }
@@ -167,7 +170,7 @@ form { display: grid; gap: 1rem; }
   clip-path: inset(50%);
 }
 
-.privacy, .availability, .form-status { color: var(--muted); font-size: .875rem; }
+.privacy, .availability, .form-status, .membership-review { color: var(--muted); font-size: .875rem; }
 .form-status:not(:empty) { margin-top: .85rem; }
 .form-status[data-state="error"] { color: #ffb4ab; }
 .form-status[data-state="success"] { color: #c7f5cf; }

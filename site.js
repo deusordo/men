@@ -49,8 +49,9 @@ if (endpoint) {
 
 const requiredText = [
   [form.elements.name, "Enter your full name."],
+  [form.elements.phone, "Enter your phone number."],
   [form.elements.location, "Enter your city, state or region, and country."],
-  [form.elements.message, "Tell us why you want to join."]
+  [form.elements.message, "Tell us why you’re interested in MEN."]
 ];
 
 for (const [field] of requiredText) {
@@ -87,7 +88,7 @@ form.addEventListener("submit", async (event) => {
     form.reset();
     showStatus(
       "success",
-      "Thank you for your interest in MEN. Your request has been received. We’ll be in touch about the next steps.",
+      "Thank you for your interest in MEN. We’ve received your request and will be in touch about the next steps.",
       "Request Received"
     );
   } catch {
