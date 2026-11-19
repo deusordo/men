@@ -158,9 +158,7 @@ function showStatus(state, message, title) {
 }
 
 const formId = form.dataset.formspreeFormId.trim().toLowerCase();
-// The personal site’s form ID is explicitly excluded.
-const isConfigured = /^[a-z0-9]+$/.test(formId) &&
-  formId !== "xwloqyor" && typeof window.fetch === "function";
+const isConfigured = /^[a-z0-9]+$/.test(formId) && typeof window.fetch === "function";
 const endpoint = isConfigured ? `https://formspree.io/f/${formId}` : null;
 let sending = false;
 

@@ -14,8 +14,8 @@ From the project directory, run `python3 -m http.server 8000 --bind 127.0.0.1`. 
 
 ## Configure Formspree
 
-1. Create a dedicated form titled **MEN — New Membership Request** in Formspree. Configure notifications for the intended inbox in the Formspree dashboard.
-2. Copy the form ID from the endpoint shown by Formspree. In `index.html`, set `data-formspree-form-id=""` on `#interest-form` to that ID. Keep this blank until the dedicated form is ready. The personal site’s ID is blocked.
+1. MEN currently shares VA’s Formspree form. MEN requests include the subject **MEN — New Membership Request**. Manage the shared inbox notifications in Formspree.
+2. To change endpoints, update the public ID in `data-formspree-form-id` on `#interest-form` in `index.html`. Leave it blank to disable submissions.
 3. The form captures first name, last name, email, required phone number, state, city, participation interest, reason, and an explicit yes/no update preference. Submissions also include a combined `name` field for existing notifications and the combined `location` field in City, State format. The required `membership_interest` field sends Member, Builder, or Founder. For custom notification templates, include `{{ membership_interest }}` and verify it in a test email. The checkbox starts unchecked. A request is an inquiry and stays subject to review.
 4. The form uses Formspree’s [honeypot field](https://help.formspree.io/articles/building-your-form/honeypot-spam-filtering). Keep Formspree’s spam filtering enabled.
 
@@ -23,9 +23,9 @@ Never place an inbox address, API key, or applicant data in this repository.
 
 ## Test
 
-With the ID blank, open the form. It should show the online availability message and disable submissions. To test success and errors without sending a request, use a temporary copy with a dummy ID and intercept the Formspree request in your browser test. Check that state selection reveals City, changing state clears the city and suggestions, a manual city is accepted, and an empty phone number or participation choice fails validation, each participation interest is included in the request, consent starts unchecked, the success message is announced, and data stays in the fields on error.
+With the ID blank, open the form. It should show the online availability message and disable submissions. To test success and errors without sending a request, intercept the Formspree request in your browser test. Check that state selection reveals City, changing state clears the city and suggestions, a manual city is accepted, and an empty phone number or participation choice fails validation, each participation interest is included in the request, consent starts unchecked, the success message is announced, and data stays in the fields on error.
 
-After the dedicated form and inbox are configured, send one clearly labeled test through the published site. Check the confirmation, Formspree dashboard, and notification inbox.
+To verify delivery, send one clearly labeled test through the published site. Check the confirmation, Formspree dashboard, and notification inbox.
 
 ## Deploy or update
 
