@@ -16,16 +16,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
-body { margin: 0; isolation: isolate; }
-
-.brick-ripple {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
+body { margin: 0; }
 p { margin: 0; }
 
 .content {
@@ -37,8 +28,6 @@ p { margin: 0; }
 .intro, .motto { text-align: center; }
 
 .logo-window {
-  position: relative;
-  isolation: isolate;
   width: min(72vw, 20rem);
   max-width: 100%;
   margin-inline: auto;
@@ -51,7 +40,7 @@ p { margin: 0; }
   object-fit: contain;
 }
 
-.intro { margin-top: clamp(1.8rem, 6vw, 2.8rem); }
+.intro { margin-top: clamp(1.3rem, 4vw, 2.05rem); }
 
 h1 {
   margin: 0;
@@ -272,7 +261,10 @@ form { display: grid; gap: 1rem; }
   padding-top: 0;
 }
 
-.join + .expandable-chapter { margin-top: clamp(2rem, 6vw, 3.5rem); }
+.chapter:not(.expandable-chapter) > .chapter-disclosure {
+  margin-top: .9rem;
+  border-top: 1px solid var(--rule);
+}
 
 .chapter-disclosure > summary {
   display: flex;
@@ -305,19 +297,22 @@ form { display: grid; gap: 1rem; }
   font: 400 clamp(1.75rem, 5.3vw, 2.35rem) / 1.15 var(--serif);
 }
 
-.chapter-disclosure > summary h2 { margin: 0; }
+.chapter-disclosure > summary :is(h2, h3) { margin: 0; }
 
 .chapter p { color: var(--muted); }
 .chapter .principles { margin-top: .95rem; color: var(--ink); font-size: .875rem; }
-.audience p + p { margin-top: .8rem; }
-.audience .audience-lead { color: var(--ink); font-weight: 600; }
-.audience .audience-subheading { margin-top: 1.45rem; font-size: 1.125rem; }
+.chapter .chapter-lead { margin-bottom: .5rem; color: var(--ink); font-weight: 650; }
+.chapter .chapter-standard { margin-top: .7rem; color: var(--ink); font-weight: 650; }
+.gathering p + p { margin-top: .8rem; }
 
-.fit-principles, .stages {
+.process-points, .fit-principles, .stages {
   margin: 1.2rem 0 0;
   padding: 0;
   list-style: none;
 }
+
+.process-points li { padding-block: .48rem; border-top: 1px solid var(--rule); color: var(--muted); }
+.process-points strong { color: var(--ink); }
 
 .fit-principles {
   display: grid;
@@ -330,8 +325,6 @@ form { display: grid; gap: 1rem; }
   font-size: 1rem;
   font-weight: 650;
 }
-
-.chapter .fit-closing { margin-top: 1.25rem; color: var(--ink); }
 
 .stages li {
   display: grid;
@@ -353,6 +346,9 @@ form { display: grid; gap: 1rem; }
 .questions summary { min-height: 2.75rem; padding: .72rem .2rem; cursor: pointer; }
 .questions details p { padding: 0 .2rem .85rem; }
 
+.closing { text-align: center; }
+.closing .action { margin-bottom: 1.45rem; }
+
 .values {
   text-align: center;
   font-size: .875rem;
@@ -369,7 +365,6 @@ form { display: grid; gap: 1rem; }
 
 @media (max-width: 480px) {
   .content { padding-top: 3.5rem; }
-  .intro { margin-top: 1.75rem; }
   .join { margin-top: 2rem; }
   .fit-principles { grid-template-columns: 1fr; }
 }
@@ -388,24 +383,6 @@ form { display: grid; gap: 1rem; }
 
   @keyframes typewriter-caret {
     50% { opacity: 0; }
-  }
-
-  .logo-window.is-sweeping::after {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(105deg, #e9e9e9 28%, #fff 50%, #e9e9e9 72%) 100% center / 290% 100%;
-    -webkit-mask: url("./assets/deus-ordo/deus-ordo-logo-white.svg") center / contain no-repeat;
-    mask: url("./assets/deus-ordo/deus-ordo-logo-white.svg") center / contain no-repeat;
-    mix-blend-mode: multiply;
-    content: "";
-    animation: logo-sweep 1.8s ease-in-out;
-  }
-
-  @keyframes logo-sweep {
-    0% { background-position: 100% center; opacity: 0; }
-    18%, 82% { opacity: .9; }
-    100% { background-position: 0% center; opacity: 0; }
   }
 
   .join:not([hidden]) { animation: reveal .24s ease-out; }

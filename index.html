@@ -25,13 +25,11 @@
   <meta name="twitter:description" content="A brotherhood of men who strengthen themselves, support one another, and take action in their communities.">
   <meta name="twitter:image" content="https://deusordo.github.io/men/assets/deus-ordo/social-preview.png">
   <meta name="twitter:image:alt" content="DEUS ORDO brick mountain logo">
-  <link rel="stylesheet" href="styles.css?v=e9a0e4c2aafc">
-  <script src="site.js?v=90ba15827be8" defer></script>
-  <script src="bricks.js?v=3734f38ba26b" defer></script>
-  <script src="typewriter.js?v=8c44a1138d22" defer></script>
+  <link rel="stylesheet" href="styles.css?v=879dd81052d4">
+  <script src="site.js?v=c49de133dbf5" defer></script>
+  <script src="typewriter.js?v=aa0d24c1aa9e" defer></script>
 </head>
 <body>
-  <canvas class="brick-ripple" aria-hidden="true"></canvas>
   <main class="content">
     <div class="logo-window">
       <img class="deus-ordo-logo" width="680" height="553" src="./assets/deus-ordo/deus-ordo-logo-white.svg"
@@ -77,8 +75,8 @@
             <input id="email" name="email" type="email" autocomplete="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Enter an email address like you@example.com." required maxlength="254">
           </div>
           <div class="field">
-            <label for="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="\+?(?:[ .\(\)\-]*[0-9]){7,15}[ .\(\)\-]*" title="Enter 7 to 15 digits. Common phone formatting is allowed." required maxlength="40">
+            <label for="phone">Phone Number (optional)</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="\+?(?:[ .\(\)\-]*[0-9]){7,15}[ .\(\)\-]*" title="Enter 7 to 15 digits. Common phone formatting is allowed." maxlength="40">
           </div>
         </div>
         <div class="field-row">
@@ -158,20 +156,20 @@
             <option value="Guest">Guest — Learn about DEUS ORDO and attend a gathering.</option>
             <option value="Member">Member — Participate in the brotherhood.</option>
             <option value="Builder">Builder — Help develop DEUS ORDO and its programs.</option>
-            <option value="Founder">Founder — Express interest in establishing or leading DEUS ORDO chapters.</option>
+            <option value="Founder">Chapter Founder — Help establish or lead a local chapter.</option>
           </select>
           <p class="membership-review" id="membership-review">Your selection helps us follow up. Membership and roles require review.</p>
         </div>
         <div class="field">
-          <label for="message">Why are you interested in DEUS ORDO?</label>
-          <textarea id="message" name="message" rows="4" required maxlength="2000" placeholder="Tell us a little about yourself and why you’re interested in joining the brotherhood."></textarea>
+          <label for="message">Tell us about yourself.</label>
+          <textarea id="message" name="message" rows="4" required maxlength="2000" placeholder="What do you do or want to pursue? What are you working toward, and what could you contribute?"></textarea>
         </div>
         <label class="consent">
           <input name="updates_consent" type="checkbox" value="yes">
           <span>I would like to receive occasional updates about DEUS ORDO, upcoming gatherings, and opportunities to participate.</span>
         </label>
         <p class="privacy" id="privacy">DEUS ORDO uses your information to respond to your inquiry. If you opt in, DEUS ORDO may also send you occasional updates. Requests are processed by Formspree.</p>
-        <input type="hidden" name="subject" value="MEN — New Membership Request">
+        <input type="hidden" name="subject" value="DEUS ORDO — New Membership Request">
         <div class="honeypot" aria-hidden="true">
           <label for="website">Leave this field empty</label>
           <input id="website" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -184,30 +182,30 @@
       <div class="confirmation" id="join-confirmation" hidden>
         <p class="confirmation-lead" id="confirmation-lead">You’ve taken your first action toward becoming part of something greater.</p>
         <p id="confirmation-message"></p>
+        <p id="confirmation-next">Watch your inbox for our reply. Before we meet, think of one goal you want help with and one skill you can share.</p>
         <p class="confirmation-motto">Build the Man. Move the Mountain.</p>
       </div>
     </section>
 
-    <section class="chapter expandable-chapter" aria-labelledby="action-title">
-      <details class="chapter-disclosure">
-        <summary><h2 id="action-title">A Brotherhood Built on Action.</h2></summary>
-        <div class="chapter-body">
-          <p>We don’t gather simply to discuss what could be done. We challenge ourselves to grow, help one another overcome obstacles, and work together to make a meaningful difference.</p>
-          <p class="principles">Brotherhood · Growth · Accountability · Integrity · Service · Action</p>
-        </div>
-      </details>
+    <section class="chapter" aria-labelledby="action-title">
+      <h2 id="action-title">What we do</h2>
+      <p class="chapter-lead">Meet. Commit. Act. Return stronger.</p>
+      <p>We’re organizing monthly gatherings to review our progress, work through challenges, and help one another move forward. Each man leaves with a clear commitment. Between gatherings, we’ll put those commitments into action and work on projects that serve our communities.</p>
+      <ul class="process-points" role="list">
+        <li><strong>Personal progress.</strong> Set a goal and follow through.</li>
+        <li><strong>Practical support.</strong> Exchange skills, advice, introductions, and help.</li>
+        <li><strong>Collective action.</strong> Choose something useful to accomplish together.</li>
+      </ul>
     </section>
 
-    <section class="chapter expandable-chapter audience" aria-labelledby="audience-title">
+    <section class="chapter" aria-labelledby="audience-title">
+      <h2 id="audience-title">Who belongs</h2>
+      <p class="chapter-lead">Masters of their craft. Men determined to master one.</p>
+      <p>Doctors, lawyers, tradesmen, entrepreneurs, engineers, educators, public servants, students, apprentices, and men pursuing a profession. We bring together experience and ambition to strengthen one another and prepare the next generation to lead, serve, and build.</p>
+      <p class="chapter-standard">Show up. Contribute. Follow through.</p>
       <details class="chapter-disclosure">
-        <summary><h2 id="audience-title">Who We’re Looking For</h2></summary>
+        <summary><h3>What we build together</h3></summary>
         <div class="chapter-body">
-          <p class="audience-lead">Men who have mastered their craft. Men determined to master one.</p>
-          <p>Doctors, lawyers, tradesmen, entrepreneurs, engineers, educators, and public servants. Students, apprentices, and men working toward a profession.</p>
-          <p>We’re bringing together men who want to develop their abilities, share their knowledge, and put both to work.</p>
-          <p>Character, commitment, and contribution are expected of every man. Experienced professionals bring knowledge and access. Men pursuing a profession bring ambition, effort, and fresh ideas. Both belong in the brotherhood.</p>
-
-          <h3 class="audience-subheading">What we build together</h3>
           <ul class="fit-principles" role="list">
             <li>
               <h4>Mastery</h4>
@@ -226,35 +224,6 @@
               <p>Prepare younger men to lead with integrity, fight for what is right, and build stronger families and communities.</p>
             </li>
           </ul>
-          <p class="fit-closing">The standard is simple. Show up, contribute, and follow through.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="chapter expandable-chapter" aria-labelledby="fit-title">
-      <details class="chapter-disclosure">
-        <summary><h2 id="fit-title">Are You the Right Fit?</h2></summary>
-        <div class="chapter-body">
-          <p>DEUS ORDO is for men who want more than conversation. It’s for those willing to show up, take responsibility, pursue growth, and contribute to something greater than themselves.</p>
-          <ul class="fit-principles" role="list">
-            <li>
-              <h3>Show Up.</h3>
-              <p>Be present. Participate. Build meaningful relationships.</p>
-            </li>
-            <li>
-              <h3>Take Action.</h3>
-              <p>Set goals, accept responsibility, and follow through.</p>
-            </li>
-            <li>
-              <h3>Strengthen Others.</h3>
-              <p>Share your knowledge, skills, connections, and support.</p>
-            </li>
-            <li>
-              <h3>Make an Impact.</h3>
-              <p>Use your strengths to improve your community and the world around you.</p>
-            </li>
-          </ul>
-          <p class="fit-closing">You don’t need to have everything figured out. You need to be willing to grow and contribute.</p>
         </div>
       </details>
     </section>
@@ -293,8 +262,15 @@
               </div>
             </li>
           </ol>
+          <p class="principles">Brotherhood · Growth · Accountability · Integrity · Service · Action</p>
         </div>
       </details>
+    </section>
+
+    <section class="chapter gathering" aria-labelledby="gathering-title">
+      <h2 id="gathering-title">The first gathering</h2>
+      <p>We’re preparing our first gathering. Request an invitation and we’ll share the date and meeting details once they’re confirmed.</p>
+      <p>I’m Vullnet Ameti, the organizer behind DEUS ORDO. If you’re interested in joining us or attending as a guest, I’d like to hear from you.</p>
     </section>
 
     <section class="chapter questions" aria-labelledby="questions-title">
@@ -310,6 +286,7 @@
     </section>
 
     <footer class="closing">
+      <button class="action" id="open-join-bottom" type="button" aria-controls="join-panel" aria-expanded="false" hidden>Join the Brotherhood</button>
       <p class="values">Brotherhood. Growth. Service.</p>
       <p class="motto">One man can move a rock. A thousand men can move a mountain.</p>
     </footer>

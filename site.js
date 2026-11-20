@@ -2,6 +2,8 @@
 
 const openJoin = document.querySelector("#open-join");
 const openGuest = document.querySelector("#open-guest");
+const openJoinBottom = document.querySelector("#open-join-bottom");
+const openers = [openJoin, openGuest, openJoinBottom];
 const closeJoin = document.querySelector("#close-join");
 const panel = document.querySelector("#join-panel");
 const panelTitle = document.querySelector("#join-title");
@@ -12,6 +14,7 @@ const status = document.querySelector("#form-status");
 const confirmation = document.querySelector("#join-confirmation");
 const confirmationLead = document.querySelector("#confirmation-lead");
 const confirmationMessage = document.querySelector("#confirmation-message");
+const confirmationNext = document.querySelector("#confirmation-next");
 const confirmationMotto = confirmation.querySelector(".confirmation-motto");
 const stateInput = form.elements.state;
 const cityInput = form.elements.city;
@@ -20,7 +23,6 @@ const lastName = form.elements.last_name;
 const phone = form.elements.phone;
 const participation = form.elements.membership_interest;
 const messageInput = form.elements.message;
-const phoneLabel = form.querySelector('label[for="phone"]');
 const messageLabel = form.querySelector('label[for="message"]');
 const participationReview = document.querySelector("#membership-review");
 const membershipCopy = {
@@ -153,12 +155,10 @@ let activeOpener = openJoin;
 function syncParticipationFields() {
   const guest = participation.value === "Guest";
   panelTitle.textContent = guest ? "Attend as a Guest" : membershipCopy.title;
-  phone.required = !guest;
-  phoneLabel.textContent = guest ? "Phone (optional)" : "Phone Number";
-  phone.setCustomValidity("");
-  messageLabel.textContent = guest ? "What would you like to know about DEUS ORDO?" : membershipCopy.question;
+  messageInput.required = !guest;
+  messageLabel.textContent = guest ? "Tell us about yourself (optional)" : membershipCopy.question;
   messageInput.placeholder = guest
-    ? "Tell us a little about yourself and what interests you about attending."
+    ? "Share a little about yourself or ask a question about attending."
     : membershipCopy.placeholder;
   messageInput.setCustomValidity("");
   participationReview.textContent = guest
@@ -180,8 +180,9 @@ function showConfirmation(guestRequest) {
   panelTitle.textContent = guestRequest ? "Your First Step Is Complete." : "First Step Taken.";
   panelTitle.setAttribute("aria-describedby", guestRequest
     ? "confirmation-message"
-    : "confirmation-lead confirmation-message");
+    : "confirmation-lead confirmation-message confirmation-next");
   confirmationLead.hidden = guestRequest;
+  confirmationNext.hidden = guestRequest;
   confirmationMessage.textContent = guestRequest
     ? "Thank you for your interest in DEUS ORDO. We’ve received your guest request and will contact you with information about an upcoming gathering."
     : "Thank you for your interest in DEUS ORDO. We’ve received your request and will contact you about the next steps.";
@@ -195,8 +196,7 @@ function showConfirmation(guestRequest) {
 
 function setPanelOpen(isOpen) {
   panel.hidden = !isOpen;
-  openJoin.setAttribute("aria-expanded", String(isOpen));
-  openGuest.setAttribute("aria-expanded", String(isOpen));
+  for (const opener of openers) opener.setAttribute("aria-expanded", String(isOpen));
 
   if (isOpen) {
     if (confirmation.hidden) {
@@ -228,14 +228,16 @@ function toggleFrom(opener) {
   activeOpener = opener;
   if (confirmation.hidden && !sending) {
     if (opener === openGuest) participation.value = "Guest";
-    else if (participation.value === "Guest") participation.value = "";
+    else if (!participation.value || participation.value === "Guest") participation.value = "Member";
     syncParticipationFields();
   }
   setPanelOpen(true);
 }
 
-openJoin.addEventListener("click", () => toggleFrom(openJoin));
-openGuest.addEventListener("click", () => toggleFrom(openGuest));
+for (const opener of openers) {
+  opener.addEventListener("click", () => toggleFrom(opener));
+  opener.hidden = false;
+}
 participation.addEventListener("change", syncParticipationFields);
 closeJoin.addEventListener("click", () => setPanelOpen(false));
 document.addEventListener("keydown", (event) => {
@@ -243,8 +245,6 @@ document.addEventListener("keydown", (event) => {
   event.preventDefault();
   setPanelOpen(false);
 });
-openJoin.hidden = false;
-openGuest.hidden = false;
 
 function showStatus(state, message) {
   status.dataset.state = state;
@@ -264,7 +264,6 @@ if (endpoint) {
 const requiredText = [
   [firstName, "Enter your first name."],
   [lastName, "Enter your last name."],
-  [phone, "Enter your phone number."],
   [cityInput, "Enter your city."],
   [messageInput, "Tell us a little about your interest in DEUS ORDO."]
 ];
@@ -284,7 +283,7 @@ form.addEventListener("submit", async (event) => {
 
   const data = new FormData(form);
   const guestRequest = data.get("membership_interest") === "Guest";
-  if (guestRequest && !phone.value) data.delete("phone");
+  if (!phone.value.trim()) data.delete("phone");
   const given = firstName.value.trim();
   const family = lastName.value.trim();
   data.set("first_name", given);
