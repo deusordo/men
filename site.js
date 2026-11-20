@@ -1,8 +1,10 @@
 "use strict";
 
 const openJoin = document.querySelector("#open-join");
+const openGuest = document.querySelector("#open-guest");
 const closeJoin = document.querySelector("#close-join");
 const panel = document.querySelector("#join-panel");
+const panelTitle = document.querySelector("#join-title");
 const form = document.querySelector("#interest-form");
 const submit = form.querySelector('button[type="submit"]');
 const status = document.querySelector("#form-status");
@@ -10,6 +12,18 @@ const stateInput = form.elements.state;
 const cityInput = form.elements.city;
 const firstName = form.elements.first_name;
 const lastName = form.elements.last_name;
+const phone = form.elements.phone;
+const participation = form.elements.membership_interest;
+const messageInput = form.elements.message;
+const phoneLabel = form.querySelector('label[for="phone"]');
+const messageLabel = form.querySelector('label[for="message"]');
+const participationReview = document.querySelector("#membership-review");
+const membershipCopy = {
+  title: panelTitle.textContent,
+  question: messageLabel.textContent,
+  placeholder: messageInput.placeholder,
+  review: participationReview.textContent
+};
 const cityField = document.querySelector("#city-field");
 const cityOptions = document.querySelector("#city-options");
 const cityStatus = document.querySelector("#city-status");
@@ -129,21 +143,58 @@ cityInput.addEventListener("keydown", (event) => {
 });
 
 const motion = matchMedia("(prefers-reduced-motion: no-preference)");
+let activeOpener = openJoin;
+
+function syncParticipationFields() {
+  const guest = participation.value === "Guest";
+  panelTitle.textContent = guest ? "Attend as a Guest" : membershipCopy.title;
+  phone.required = !guest;
+  phoneLabel.textContent = guest ? "Phone (optional)" : "Phone Number";
+  phone.setCustomValidity("");
+  messageLabel.textContent = guest ? "What would you like to know about MEN?" : membershipCopy.question;
+  messageInput.placeholder = guest
+    ? "Tell us a little about yourself and what interests you about attending."
+    : membershipCopy.placeholder;
+  messageInput.setCustomValidity("");
+  participationReview.textContent = guest
+    ? "Guest requests are reviewed before invitations are sent."
+    : membershipCopy.review;
+}
 
 function setPanelOpen(isOpen) {
   panel.hidden = !isOpen;
   openJoin.setAttribute("aria-expanded", String(isOpen));
+  openGuest.setAttribute("aria-expanded", String(isOpen));
 
   if (isOpen) {
     firstName.focus({ preventScroll: true });
     panel.scrollIntoView({ behavior: motion.matches ? "smooth" : "instant", block: "start" });
   } else {
     closeCityOptions();
-    openJoin.focus();
+    activeOpener.focus();
   }
 }
 
-openJoin.addEventListener("click", () => setPanelOpen(panel.hidden));
+function toggleFrom(opener) {
+  if (!panel.hidden && activeOpener === opener) {
+    setPanelOpen(false);
+    return;
+  }
+
+  activeOpener = opener;
+  if (opener === openGuest) participation.value = "Guest";
+  else if (participation.value === "Guest") participation.value = "";
+  syncParticipationFields();
+  if (status.dataset.state === "success") {
+    status.replaceChildren();
+    delete status.dataset.state;
+  }
+  setPanelOpen(true);
+}
+
+openJoin.addEventListener("click", () => toggleFrom(openJoin));
+openGuest.addEventListener("click", () => toggleFrom(openGuest));
+participation.addEventListener("change", syncParticipationFields);
 closeJoin.addEventListener("click", () => setPanelOpen(false));
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape" || panel.hidden || event.defaultPrevented) return;
@@ -151,6 +202,7 @@ document.addEventListener("keydown", (event) => {
   setPanelOpen(false);
 });
 openJoin.hidden = false;
+openGuest.hidden = false;
 
 function showStatus(state, message, title) {
   const paragraph = document.createElement("p");
@@ -178,9 +230,9 @@ if (endpoint) {
 const requiredText = [
   [firstName, "Enter your first name."],
   [lastName, "Enter your last name."],
-  [form.elements.phone, "Enter your phone number."],
+  [phone, "Enter your phone number."],
   [cityInput, "Enter your city."],
-  [form.elements.message, "Tell us why you’re interested in MEN."]
+  [messageInput, "Tell us a little about your interest in MEN."]
 ];
 
 for (const [field] of requiredText) {
@@ -192,11 +244,13 @@ form.addEventListener("submit", async (event) => {
   if (!endpoint || sending) return;
 
   for (const [field, message] of requiredText) {
-    field.setCustomValidity(field.value.trim() ? "" : message);
+    field.setCustomValidity(field.required && !field.value.trim() ? message : "");
   }
   if (!form.reportValidity()) return;
 
   const data = new FormData(form);
+  const guestRequest = data.get("membership_interest") === "Guest";
+  if (guestRequest && !phone.value) data.delete("phone");
   const given = firstName.value.trim();
   const family = lastName.value.trim();
   data.set("first_name", given);
@@ -223,10 +277,14 @@ form.addEventListener("submit", async (event) => {
     }
 
     form.reset();
+    if (guestRequest) participation.value = "Guest";
+    syncParticipationFields();
     syncCityField();
     showStatus(
       "success",
-      "Thank you for your interest in MEN. We’ve received your request and will be in touch about the next steps.",
+      guestRequest
+        ? "Thank you for your interest in MEN. We’ll contact you with information about an upcoming gathering."
+        : "Thank you for your interest in MEN. We’ve received your request and will be in touch about the next steps.",
       "Request Received"
     );
   } catch {

@@ -78,13 +78,26 @@ h1 {
   line-height: 1.45;
 }
 
-.intro .member-count {
-  margin: .9rem auto 0;
-  color: var(--muted);
-  font-size: .95rem;
+.intro-actions {
+  display: grid;
+  justify-items: center;
+  gap: .2rem;
 }
 
-.member-count strong { color: var(--ink); }
+.guest-link {
+  min-height: 2.75rem;
+  padding: .35rem .65rem;
+  border: 0;
+  border-radius: .35rem;
+  background: transparent;
+  color: var(--muted);
+  font: 500 .95rem / 1.3 var(--sans);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  cursor: pointer;
+}
+
+.guest-link:hover { color: var(--ink); }
 
 .typewriter {
   display: grid;
