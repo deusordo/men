@@ -267,34 +267,51 @@ form { display: grid; gap: 1rem; }
   border-top: 1px solid var(--rule);
 }
 
+.expandable-chapter {
+  margin-top: .45rem;
+  padding-top: 0;
+}
+
+.join + .expandable-chapter { margin-top: clamp(2rem, 6vw, 3.5rem); }
+
+.chapter-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .85rem;
+  min-height: 3.5rem;
+  padding: .7rem .2rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.chapter-disclosure > summary::-webkit-details-marker { display: none; }
+
+.chapter-disclosure > summary::after {
+  flex: 0 0 1.1rem;
+  height: 1.1rem;
+  color: var(--muted);
+  background:
+    linear-gradient(currentColor, currentColor) center / .8rem 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px .8rem no-repeat;
+  content: "";
+}
+
+.chapter-disclosure[open] > summary::after { background-size: .8rem 1px, 0 0; }
+.chapter-body { padding: .35rem .2rem 1.05rem; }
+
 .chapter h2 {
   margin: 0 0 .8rem;
   font: 400 clamp(1.75rem, 5.3vw, 2.35rem) / 1.15 var(--serif);
 }
+
+.chapter-disclosure > summary h2 { margin: 0; }
 
 .chapter p { color: var(--muted); }
 .chapter .principles { margin-top: .95rem; color: var(--ink); font-size: .875rem; }
 .audience p + p { margin-top: .8rem; }
 .audience .audience-lead { color: var(--ink); font-weight: 600; }
 .audience .audience-subheading { margin-top: 1.45rem; font-size: 1.125rem; }
-
-.audience-accordion {
-  margin: .8rem 0 0;
-  padding: 0;
-  border-bottom: 1px solid var(--rule);
-  list-style: none;
-  overflow-anchor: none;
-}
-
-.audience-accordion summary {
-  min-height: 3.4rem;
-  padding: .9rem .2rem;
-  border-top: 1px solid var(--rule);
-  font-weight: 650;
-  cursor: pointer;
-}
-
-.audience-accordion details p { padding: 0 .25rem .95rem 1.1rem; }
 
 .fit-principles, .stages {
   margin: 1.2rem 0 0;
@@ -308,7 +325,7 @@ form { display: grid; gap: 1rem; }
   gap: 1rem 1.75rem;
 }
 
-.chapter h3 {
+.chapter :is(h3, h4) {
   margin: 0 0 .2rem;
   font-size: 1rem;
   font-weight: 650;
@@ -393,7 +410,6 @@ form { display: grid; gap: 1rem; }
 
   .join:not([hidden]) { animation: reveal .24s ease-out; }
   .confirmation:not([hidden]),
-  .audience-accordion details[open] p,
   .questions details[open] p { animation: reveal .2s ease-out; }
 
   @keyframes reveal {
