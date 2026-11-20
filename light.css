@@ -1,0 +1,118 @@
+@media (prefers-reduced-motion: no-preference) {
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-window {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .logo-window.lighting-enabled::before {
+    position: absolute;
+    z-index: -1;
+    inset: -27% -18% 20%;
+    content: "";
+    pointer-events: none;
+    background: radial-gradient(ellipse 44% 34% at 50% 35%, #c2d8ff31, #c2d8ff12 48%, transparent 100%);
+    animation: summit-glow 9s ease-in-out infinite;
+  }
+
+  .mountain-light {
+    position: absolute;
+    inset: 0 0 auto;
+    aspect-ratio: 680 / 436;
+    pointer-events: none;
+  }
+
+  .lighting-enabled .mountain-light {
+    filter: drop-shadow(0 0 .34rem #bed5ff70);
+  }
+
+  .lighting-enabled .mountain-light::after,
+  .lighting-enabled .mountain-light::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    opacity: 0;
+    mask: url("./assets/deus-ordo/deus-ordo-mark-white.svg") center / 100% 100% no-repeat;
+    -webkit-mask: url("./assets/deus-ordo/deus-ordo-mark-white.svg") center / 100% 100% no-repeat;
+  }
+
+  .lighting-enabled .mountain-light::after {
+    background: linear-gradient(to top right, transparent 46%, #c8ddffcf 50%, transparent 54%) 100% 0 / 230% 230% no-repeat;
+    animation: mountain-sweep 15s ease-in-out infinite;
+  }
+
+  .light-page-hidden .logo-window::before,
+  .light-page-hidden .mountain-light::after,
+  .logo-window.logo-offscreen::before,
+  .logo-window.logo-offscreen .mountain-light::after {
+    animation-play-state: paused;
+  }
+
+  @keyframes summit-glow {
+    0%, 76%, 100% { opacity: 0; }
+    44% { opacity: .62; }
+  }
+
+  @keyframes mountain-sweep {
+    0%, 35% { background-position: 100% 0; opacity: 0; }
+    39% { opacity: .38; }
+    50%, 100% { background-position: 0 100%; opacity: 0; }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .lighting-enabled .mountain-light::before {
+      background: radial-gradient(ellipse at center, #cbdfffdd 0%, #cbdfff59 22%, transparent 58%) 50% 100% / 100% 235% no-repeat;
+      transition: background-position .9s ease, opacity .35s ease;
+    }
+
+    .lighting-enabled:hover .mountain-light::before {
+      background-position: 50% 9%;
+      opacity: .52;
+    }
+  }
+
+  .page-lights {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .cursor-light {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, #c9dfff12, #c9dfff06 40%, transparent 70%);
+    opacity: 0;
+    transition: opacity .42s ease-out;
+  }
+
+  .cursor-light.is-visible { opacity: 1; }
+
+  .light-pulse {
+    position: absolute;
+    width: min(19rem, 68vw);
+    aspect-ratio: 1;
+    border: 2px solid #edf4ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #bcd5ff52, inset 0 0 8px #bcd5ff33;
+    animation: energy-pulse .78s cubic-bezier(.12, .64, .34, 1) both;
+  }
+
+  @keyframes energy-pulse {
+    0% { transform: translate(-50%, -50%) scale(.07); opacity: .76; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+  }
+
+  @media (pointer: coarse) {
+    .lighting-enabled .mountain-light { filter: drop-shadow(0 0 .16rem #bed5ff62); }
+    .light-pulse { box-shadow: 0 0 5px #bcd5ff45; }
+  }
+}
