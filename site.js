@@ -156,7 +156,7 @@ function syncParticipationFields() {
   phone.required = !guest;
   phoneLabel.textContent = guest ? "Phone (optional)" : "Phone Number";
   phone.setCustomValidity("");
-  messageLabel.textContent = guest ? "What would you like to know about MEN?" : membershipCopy.question;
+  messageLabel.textContent = guest ? "What would you like to know about DEUS ORDO?" : membershipCopy.question;
   messageInput.placeholder = guest
     ? "Tell us a little about yourself and what interests you about attending."
     : membershipCopy.placeholder;
@@ -183,8 +183,8 @@ function showConfirmation(guestRequest) {
     : "confirmation-lead confirmation-message");
   confirmationLead.hidden = guestRequest;
   confirmationMessage.textContent = guestRequest
-    ? "Thank you for your interest in MEN. We’ve received your guest request and will contact you with information about an upcoming gathering."
-    : "Thank you for your interest in MEN. We’ve received your request and will contact you about the next steps.";
+    ? "Thank you for your interest in DEUS ORDO. We’ve received your guest request and will contact you with information about an upcoming gathering."
+    : "Thank you for your interest in DEUS ORDO. We’ve received your request and will contact you about the next steps.";
   confirmationMotto.hidden = guestRequest;
   panelCaption.hidden = true;
   form.hidden = true;
@@ -212,7 +212,7 @@ function setPanelOpen(isOpen) {
       form.hidden = false;
       panelCaption.hidden = false;
       panelTitle.removeAttribute("aria-describedby");
-      closeJoin.setAttribute("aria-label", "Close MEN request form");
+      closeJoin.setAttribute("aria-label", "Close DEUS ORDO request form");
       syncParticipationFields();
     }
     activeOpener.focus();
@@ -266,7 +266,7 @@ const requiredText = [
   [lastName, "Enter your last name."],
   [phone, "Enter your phone number."],
   [cityInput, "Enter your city."],
-  [messageInput, "Tell us a little about your interest in MEN."]
+  [messageInput, "Tell us a little about your interest in DEUS ORDO."]
 ];
 
 for (const [field] of requiredText) {

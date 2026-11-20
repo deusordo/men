@@ -1,0 +1,17 @@
+/* DEUS ORDO — use with the complete logo SVG, not the former crop window. */
+.deus-ordo-logo {
+  display: block;
+  width: min(72vw, 20rem);
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+  filter: none;
+}
+.deus-ordo-mark {
+  display: block;
+  width: 3rem;
+  height: auto;
+  flex: none;
+}
+/* currentcolor variants inherit CSS color only when inserted inline. */
