@@ -261,12 +261,73 @@ form { display: grid; gap: 1rem; }
 .privacy, .availability, .form-status, .membership-review, .city-help { color: var(--muted); font-size: .875rem; }
 .form-status:not(:empty) { margin-top: .85rem; }
 .form-status[data-state="error"] { color: #ffb4ab; }
-.form-status[data-state="success"] { color: #c7f5cf; }
-.form-status strong { display: block; margin-bottom: .3rem; font-size: 1.05rem; }
 .submit { justify-self: start; font-size: 1rem; }
 
+.confirmation {
+  display: grid;
+  gap: .8rem;
+  max-width: 30rem;
+  color: var(--muted);
+}
+
+.confirmation-lead { color: var(--ink); font-size: 1.125rem; }
+.confirmation-motto { margin-top: .25rem; color: var(--ink); font: 400 1.2rem / 1.4 var(--serif); }
+
+.chapter, .closing {
+  margin-top: clamp(2.5rem, 7vw, 4rem);
+  padding-top: clamp(1.5rem, 5vw, 2.4rem);
+  border-top: 1px solid var(--rule);
+}
+
+.chapter h2 {
+  margin: 0 0 .8rem;
+  font: 400 clamp(1.75rem, 5.3vw, 2.35rem) / 1.15 var(--serif);
+}
+
+.chapter p { color: var(--muted); }
+.chapter .principles { margin-top: .95rem; color: var(--ink); font-size: .875rem; }
+
+.fit-principles, .stages {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fit-principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.75rem;
+}
+
+.chapter h3 {
+  margin: 0 0 .2rem;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.chapter .fit-closing { margin-top: 1.25rem; color: var(--ink); }
+
+.stages li {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+  gap: .65rem;
+  padding-block: .82rem;
+  border-top: 1px solid var(--rule);
+}
+
+.stages li > span {
+  align-self: start;
+  padding-top: .1rem;
+  color: var(--muted);
+  font-size: .875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.questions details { border-bottom: 1px solid var(--rule); }
+.questions summary { min-height: 2.75rem; padding: .72rem .2rem; cursor: pointer; }
+.questions details p { padding: 0 .2rem .85rem; }
+
 .values {
-  margin: 2rem auto 0;
   text-align: center;
   font-size: .875rem;
   font-weight: 600;
@@ -285,6 +346,7 @@ form { display: grid; gap: 1rem; }
   .brand p { letter-spacing: .18em; }
   .intro { margin-top: 1.75rem; }
   .join { margin-top: 2rem; }
+  .fit-principles { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -320,6 +382,8 @@ form { display: grid; gap: 1rem; }
   }
 
   .join:not([hidden]) { animation: reveal .24s ease-out; }
+  .confirmation:not([hidden]),
+  .questions details[open] p { animation: reveal .2s ease-out; }
 
   @keyframes reveal {
     from { opacity: 0; transform: translateY(6px); }

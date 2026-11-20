@@ -5,9 +5,14 @@ const openGuest = document.querySelector("#open-guest");
 const closeJoin = document.querySelector("#close-join");
 const panel = document.querySelector("#join-panel");
 const panelTitle = document.querySelector("#join-title");
+const panelCaption = panel.querySelector(".join-caption");
 const form = document.querySelector("#interest-form");
 const submit = form.querySelector('button[type="submit"]');
 const status = document.querySelector("#form-status");
+const confirmation = document.querySelector("#join-confirmation");
+const confirmationLead = document.querySelector("#confirmation-lead");
+const confirmationMessage = document.querySelector("#confirmation-message");
+const confirmationMotto = confirmation.querySelector(".confirmation-motto");
 const stateInput = form.elements.state;
 const cityInput = form.elements.city;
 const firstName = form.elements.first_name;
@@ -161,16 +166,55 @@ function syncParticipationFields() {
     : membershipCopy.review;
 }
 
+function focusConfirmation() {
+  panelTitle.focus({ preventScroll: true });
+  panel.scrollIntoView({ behavior: "instant", block: "start" });
+}
+
+function showConfirmation(guestRequest) {
+  form.reset();
+  syncCityField();
+  status.replaceChildren();
+  delete status.dataset.state;
+
+  panelTitle.textContent = guestRequest ? "Your First Step Is Complete." : "First Step Taken.";
+  panelTitle.setAttribute("aria-describedby", guestRequest
+    ? "confirmation-message"
+    : "confirmation-lead confirmation-message");
+  confirmationLead.hidden = guestRequest;
+  confirmationMessage.textContent = guestRequest
+    ? "Thank you for your interest in MEN. We’ve received your guest request and will contact you with information about an upcoming gathering."
+    : "Thank you for your interest in MEN. We’ve received your request and will contact you about the next steps.";
+  confirmationMotto.hidden = guestRequest;
+  panelCaption.hidden = true;
+  form.hidden = true;
+  confirmation.hidden = false;
+  closeJoin.setAttribute("aria-label", "Close request confirmation");
+  if (!panel.hidden) focusConfirmation();
+}
+
 function setPanelOpen(isOpen) {
   panel.hidden = !isOpen;
   openJoin.setAttribute("aria-expanded", String(isOpen));
   openGuest.setAttribute("aria-expanded", String(isOpen));
 
   if (isOpen) {
-    firstName.focus({ preventScroll: true });
-    panel.scrollIntoView({ behavior: motion.matches ? "smooth" : "instant", block: "start" });
+    if (confirmation.hidden) {
+      firstName.focus({ preventScroll: true });
+      panel.scrollIntoView({ behavior: motion.matches ? "smooth" : "instant", block: "start" });
+    } else {
+      focusConfirmation();
+    }
   } else {
     closeCityOptions();
+    if (!confirmation.hidden) {
+      confirmation.hidden = true;
+      form.hidden = false;
+      panelCaption.hidden = false;
+      panelTitle.removeAttribute("aria-describedby");
+      closeJoin.setAttribute("aria-label", "Close MEN request form");
+      syncParticipationFields();
+    }
     activeOpener.focus();
   }
 }
@@ -182,12 +226,10 @@ function toggleFrom(opener) {
   }
 
   activeOpener = opener;
-  if (opener === openGuest) participation.value = "Guest";
-  else if (participation.value === "Guest") participation.value = "";
-  syncParticipationFields();
-  if (status.dataset.state === "success") {
-    status.replaceChildren();
-    delete status.dataset.state;
+  if (confirmation.hidden && !sending) {
+    if (opener === openGuest) participation.value = "Guest";
+    else if (participation.value === "Guest") participation.value = "";
+    syncParticipationFields();
   }
   setPanelOpen(true);
 }
@@ -197,24 +239,16 @@ openGuest.addEventListener("click", () => toggleFrom(openGuest));
 participation.addEventListener("change", syncParticipationFields);
 closeJoin.addEventListener("click", () => setPanelOpen(false));
 document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape" || panel.hidden || event.defaultPrevented) return;
+  if (event.key !== "Escape" || panel.hidden || event.defaultPrevented || event.isComposing) return;
   event.preventDefault();
   setPanelOpen(false);
 });
 openJoin.hidden = false;
 openGuest.hidden = false;
 
-function showStatus(state, message, title) {
-  const paragraph = document.createElement("p");
-  paragraph.textContent = message;
+function showStatus(state, message) {
   status.dataset.state = state;
-  if (title) {
-    const heading = document.createElement("strong");
-    heading.textContent = title;
-    status.replaceChildren(heading, paragraph);
-  } else {
-    status.replaceChildren(paragraph);
-  }
+  status.textContent = message;
 }
 
 const formId = form.dataset.formspreeFormId.trim().toLowerCase();
@@ -276,17 +310,7 @@ form.addEventListener("submit", async (event) => {
       return;
     }
 
-    form.reset();
-    if (guestRequest) participation.value = "Guest";
-    syncParticipationFields();
-    syncCityField();
-    showStatus(
-      "success",
-      guestRequest
-        ? "Thank you for your interest in MEN. We’ll contact you with information about an upcoming gathering."
-        : "Thank you for your interest in MEN. We’ve received your request and will be in touch about the next steps.",
-      "Request Received"
-    );
+    showConfirmation(guestRequest);
   } catch {
     showStatus("error", "We couldn’t confirm that your request was sent. Please check your connection before trying again.");
   } finally {
