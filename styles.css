@@ -322,6 +322,11 @@ form { display: grid; gap: 1rem; }
 .chapter .principles { margin-top: .95rem; color: var(--ink); font-size: .875rem; }
 .chapter .chapter-lead { margin-bottom: .5rem; color: var(--ink); font-weight: 650; }
 .chapter .chapter-standard { margin-top: .7rem; color: var(--ink); font-weight: 650; }
+.chapter .chapter-note { margin-top: .75rem; }
+
+#support-form { position: relative; }
+#support-form .field,
+#support-form :is(input, select, textarea) { min-width: 0; }
 
 .process-points, .fit-principles, .stages {
   margin: 1.2rem 0 0;
@@ -406,6 +411,7 @@ form { display: grid; gap: 1rem; }
   .content { padding-top: 3.5rem; }
   .join { margin-top: 2rem; }
   .fit-principles, .vision-grid { grid-template-columns: 1fr; }
+  #support-form .field-row { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
