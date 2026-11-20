@@ -360,6 +360,27 @@ form { display: grid; gap: 1rem; }
   font-variant-numeric: tabular-nums;
 }
 
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem 1rem;
+  margin-block: 1rem 1.15rem;
+}
+
+.vision-grid figure { margin: 0; }
+.vision-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: .45rem;
+  background: #191715;
+}
+
+.vision-grid figcaption { margin-top: .6rem; }
+.vision-grid figcaption p { font-size: .925rem; }
+
 .questions details { border-bottom: 1px solid var(--rule); }
 .questions summary { min-height: 2.75rem; padding: .72rem .2rem; cursor: pointer; }
 .questions details p { padding: 0 .2rem .85rem; }
@@ -384,7 +405,7 @@ form { display: grid; gap: 1rem; }
 @media (max-width: 480px) {
   .content { padding-top: 3.5rem; }
   .join { margin-top: 2rem; }
-  .fit-principles { grid-template-columns: 1fr; }
+  .fit-principles, .vision-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -3,7 +3,7 @@ const lightLogo = document.querySelector('.logo-window');
 if (lightLogo) {
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const desktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  const quietAreas = 'a, button, form, input, select, textarea, label, summary, [role="button"], [contenteditable], #join-panel, .logo-window, h1, h2, h3, p, li';
+  const quietAreas = 'a, button, form, input, select, textarea, label, summary, [role="button"], [contenteditable], #join-panel, .logo-window, h1, h2, h3, p, li, figure';
   const lightLayer = document.createElement('div');
   const cursorLight = document.createElement('div');
   lightLayer.className = 'page-lights';
