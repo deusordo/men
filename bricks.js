@@ -109,7 +109,7 @@
 
   window.addEventListener("pointermove", event => {
     if (event.pointerType !== "mouse" || !enabled.matches) return;
-    if (event.target.closest(".join, .action, .logo-window")) {
+    if (event.target.closest(".join, .action, .logo-window, .page-tools")) {
       lowerBricks();
       return;
     }

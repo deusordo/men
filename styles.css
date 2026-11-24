@@ -438,3 +438,53 @@ form { display: grid; gap: 1rem; }
     from { opacity: 0; transform: translateY(6px); }
   }
 }
+
+
+:root { --theme-outline: var(--field-border); --theme-hover: #ffffff12; }
+:root[data-theme="light"] {
+  color-scheme: light;
+  --paper: #fff;
+  --ink: #161616;
+  --muted: #4b4b4b;
+  --rule: #bebebe;
+  --field-border: #777;
+  --button: #191919;
+  --button-hover: #3a3a3a;
+  --theme-hover: #0000000a;
+}
+.page-tools { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; margin: -1.5rem 0 .85rem; }
+.page-tools a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--ink); font-size: .83rem; text-underline-offset: .22em; }
+.deus-ordo-logo-light { display: none; }
+:root[data-theme="light"] .deus-ordo-logo:not(.deus-ordo-logo-light) { display: none; }
+:root[data-theme="light"] .deus-ordo-logo-light { display: block; }
+:root[data-theme="light"] .action { color: #fff; }
+:root[data-theme="light"] :focus-visible { outline-color: #222; }
+:root[data-theme="light"] .field :is(input, select, textarea) { background: #f7f7f7; }
+:root[data-theme="light"] .field :is(input, select, textarea):focus { border-color: #424242; }
+:root[data-theme="light"] .city-options { background: #fff; }
+:root[data-theme="light"] :is(.city-options li:hover, .city-options li[aria-selected="true"], .close:hover) { background: #e9e9e9; }
+:root[data-theme="light"] .form-status[data-state="error"] { color: #9f241e; }
+:root[data-theme="light"] .brick-ripple { filter: invert(1); }
+:root[data-theme="light"] .light-pulse { border-color: #526887; }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  flex: none;
+  min-height: 2.75rem;
+  padding: .35rem .7rem;
+  border: 1px solid var(--theme-outline);
+  border-radius: .4rem;
+  color: inherit;
+  background: transparent;
+  font: 600 .78rem/1.2 system-ui, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.theme-toggle[hidden], .theme-sun, :root[data-theme="dark"] .theme-moon { display: none; }
+:root[data-theme="dark"] .theme-sun { display: block; }
+.theme-toggle svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle:hover { background: var(--theme-hover); }
+.theme-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }

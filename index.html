@@ -25,20 +25,30 @@
   <meta name="twitter:description" content="A brotherhood of men who strengthen themselves, support one another, and take action in their communities.">
   <meta name="twitter:image" content="https://deusordo.github.io/men/assets/deus-ordo/social-preview.png">
   <meta name="twitter:image:alt" content="DEUS ORDO brick mountain logo">
-  <link rel="stylesheet" href="styles.css?v=41bebae4fe7f">
+  <script src="./theme.js"></script>
+  <link rel="stylesheet" href="styles.css?v=20261123theme">
   <link rel="stylesheet" href="light.css?v=177cd8c0ab51">
   <script src="site.js?v=c49de133dbf5" defer></script>
   <script src="support.js?v=565ea3344080" defer></script>
   <script src="typewriter.js?v=aa0d24c1aa9e" defer></script>
   <script src="light.js?v=6c6afdbff788" defer></script>
-  <script src="bricks.js?v=3734f38ba26b" defer></script>
+  <script src="bricks.js?v=20261123theme" defer></script>
 </head>
 <body>
   <canvas class="brick-ripple" aria-hidden="true"></canvas>
   <main class="content">
+    <div class="page-tools">
+      <a href="../NuTerra/">NuTerra</a>
+      <button class="theme-toggle" data-theme-toggle type="button" hidden>
+          <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41m0-14.14-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
+          <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.4A8.7 8.7 0 0 1 9.6 3.5 8.8 8.8 0 1 0 20.5 14.4Z"/></svg>
+          <span data-theme-label>Theme</span>
+        </button>
+    </div>
     <div class="logo-window">
       <img class="deus-ordo-logo" width="680" height="553" src="./assets/deus-ordo/deus-ordo-logo-white.svg"
         alt="DEUS ORDO" decoding="async" fetchpriority="high">
+      <img class="deus-ordo-logo deus-ordo-logo-light" width="680" height="553" src="./assets/deus-ordo/deus-ordo-logo-black.svg" alt="DEUS ORDO" decoding="async">
       <span class="mountain-light" aria-hidden="true"></span>
     </div>
 
