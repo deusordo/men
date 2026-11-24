@@ -418,7 +418,7 @@ form { display: grid; gap: 1rem; }
   --button-hover: #3a3a3a;
   --theme-hover: #0000000a;
 }
-.page-tools { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; margin: -1.5rem 0 .85rem; }
+.page-tools { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 1rem; margin: -1.5rem 0 .85rem; }
 .page-tools a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--ink); font-size: .83rem; text-underline-offset: .22em; }
 .deus-ordo-logo-light { display: none; }
 :root[data-theme="light"] .deus-ordo-logo:not(.deus-ordo-logo-light) { display: none; }
