@@ -2,7 +2,6 @@
 
 (() => {
   const form = document.getElementById("support-form");
-  const disclosure = document.getElementById("support-details");
   const status = document.getElementById("support-status");
   const formId = document.getElementById("interest-form")?.dataset.formspreeFormId?.trim() ?? "";
   if (!form || !/^[a-z0-9]+$/i.test(formId) || typeof window.fetch !== "function") return;
@@ -59,7 +58,7 @@
 
       form.reset();
       showStatus("success", "We received your request for review. We’ll use your email address if we need more information or can follow up.");
-      if (disclosure.open) status.focus();
+      status.focus();
     } catch {
       showStatus("error", "We couldn’t confirm your request was sent. Your entries are still here. Please check your connection before trying again.");
     } finally {
@@ -72,4 +71,5 @@
 
   status.textContent = "";
   submit.disabled = false;
+  form.hidden = false;
 })();

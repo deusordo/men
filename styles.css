@@ -275,54 +275,18 @@ form { display: grid; gap: 1rem; }
   border-top: 1px solid var(--rule);
 }
 
-.expandable-chapter {
-  margin-top: .45rem;
-  padding-top: 0;
-}
-
-.chapter:not(.expandable-chapter) > .chapter-disclosure {
-  margin-top: .9rem;
-  border-top: 1px solid var(--rule);
-}
-
-.chapter-disclosure > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .85rem;
-  min-height: 3.5rem;
-  padding: .7rem .2rem;
-  list-style: none;
-  cursor: pointer;
-}
-
-.chapter-disclosure > summary::-webkit-details-marker { display: none; }
-
-.chapter-disclosure > summary::after {
-  flex: 0 0 1.1rem;
-  height: 1.1rem;
-  color: var(--muted);
-  background:
-    linear-gradient(currentColor, currentColor) center / .8rem 1px no-repeat,
-    linear-gradient(currentColor, currentColor) center / 1px .8rem no-repeat;
-  content: "";
-}
-
-.chapter-disclosure[open] > summary::after { background-size: .8rem 1px, 0 0; }
-.chapter-body { padding: .35rem .2rem 1.05rem; }
-
 .chapter h2 {
   margin: 0 0 .8rem;
   font: 400 clamp(1.75rem, 5.3vw, 2.35rem) / 1.15 var(--serif);
 }
-
-.chapter-disclosure > summary :is(h2, h3) { margin: 0; }
 
 .chapter p { color: var(--muted); }
 .chapter .principles { margin-top: .95rem; color: var(--ink); font-size: .875rem; }
 .chapter .chapter-lead { margin-bottom: .5rem; color: var(--ink); font-weight: 650; }
 .chapter .chapter-standard { margin-top: .7rem; color: var(--ink); font-weight: 650; }
 .chapter .chapter-note { margin-top: .75rem; }
+.chapter > p + h3 { margin-top: 1rem; }
+#support-form { margin-top: .85rem; }
 
 #support-form { position: relative; }
 #support-form .field,
@@ -386,9 +350,10 @@ form { display: grid; gap: 1rem; }
 .vision-grid figcaption { margin-top: .6rem; }
 .vision-grid figcaption p { font-size: .925rem; }
 
-.questions details { border-bottom: 1px solid var(--rule); }
-.questions summary { min-height: 2.75rem; padding: .72rem .2rem; cursor: pointer; }
-.questions details p { padding: 0 .2rem .85rem; }
+.question + .question { border-top: 1px solid var(--rule); margin-top: .9rem; padding-top: .85rem; }
+.chapter-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 .55rem; margin-top: .45rem; }
+.chapter-nav a { display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: .35rem; color: var(--muted); font-size: .84rem; text-underline-offset: .23em; }
+.chapter-nav a:hover { color: var(--ink); }
 
 .closing { text-align: center; }
 .closing .action { margin-bottom: 1.45rem; }
@@ -431,8 +396,7 @@ form { display: grid; gap: 1rem; }
   }
 
   .join:not([hidden]) { animation: reveal .24s ease-out; }
-  .confirmation:not([hidden]),
-  .questions details[open] p { animation: reveal .2s ease-out; }
+  .confirmation:not([hidden]) { animation: reveal .2s ease-out; }
 
   @keyframes reveal {
     from { opacity: 0; transform: translateY(6px); }
